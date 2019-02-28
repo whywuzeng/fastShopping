@@ -12,7 +12,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
     .ic_iconfont{
         font-family: iconfont;
     }
