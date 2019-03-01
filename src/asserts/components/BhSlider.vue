@@ -9,17 +9,16 @@
 
 <style scoped>
     .slider{
-        position: fixed;
-        right: 0;
-        left: 0;
-        top: 180px;
+        position: relative;
+        width: 750px;
+        height: 430px;
     }
     .frame{
-        position: fixed;
+        position: relative;
         right: 0;
         left: 0;
-        top: 0;
-        bottom: 0;
+        width: 750px;
+        height: 430px;
         justify-content: center;
     }
     .indicator{
@@ -32,10 +31,16 @@
         bottom: 10px;
         right: 0px;
     }
+    .image{
+        position: relative;
+        width: 750px;
+        height: 430px;
+    }
 </style>
 
 <script>
-   export default {
+    let modal = weex.requireModule('modal')
+    export default {
         props:['ImageList'],
         data(){
           return{}
@@ -44,6 +49,15 @@
           onchange(event){
 
           }
+        },
+     created () {
+       console.log(this.ImageList)
+       // modal.toast({message: this.ImageList.length, duratoion: 1000})
+     },
+      watch :{
+        ImageList :function (newvlues, oldvlues) {
+          modal.toast({message: newvlues.length, duratoion: 1000})
         }
+      }
    }
 </script>

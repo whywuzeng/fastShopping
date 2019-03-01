@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import weex from 'weex-vue-render'
-import minxins from './mixins'
+import minxins1 from '@/mixins/index1.js'
 // register global mixins.
-weex.mixin(minxins);
+
+Vue.mixin(minxins1)
 
 weex.init(Vue)

@@ -1,11 +1,11 @@
-let stream = weex.registerModule('stream');
 export default {
-    methods :{
+  methods: {
       GET (api,callback){
+        const stream = weex.requireModule('stream');
         return stream.fetch({
           method:'GET',
           type :'json',
-          url :'http://cdn.zwwill.com/yanxuan/'+api,
+          url :'http://cdn.zwwill.com/yanxuan/'+api
         },callback)
       }
     }

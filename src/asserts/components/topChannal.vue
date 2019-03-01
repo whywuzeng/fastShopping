@@ -73,7 +73,10 @@
           util.initIconFont();
           this.initJLine();
         },
-      data :{
+      data (){
+          return {
+            jLPosition :{ left:'30px', width: '80px'}
+          }
       },
       computed:{
         // jLPosition (){

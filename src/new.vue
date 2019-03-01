@@ -6,6 +6,14 @@
             <top-refresh></top-refresh>
             <div class="cell-button">
                 <bh-slider :ImageList="BhBanners"></bh-slider>
+                <div class="item3">
+                    <text class="ig-text iconfont">&#xe63a; 网易自营品牌</text>
+                    <text class="ig-text iconfont">&#xe63a; 30天无忧退货</text>
+                    <text class="ig-text iconfont">&#xe63a; 48小时快速退款</text>
+                </div>
+            </div>
+            <div class="cell-button">
+                <block1></block1>
             </div>
             <div class="cell" v-for="num in lists">
                 <div class="panel">
@@ -22,19 +30,23 @@ import Header from './asserts/components/Header.vue';
 import topChannel from './asserts/components/topChannal.vue';
 import refreshCom from './asserts/components/refresh.vue';
 import BHSlider from './asserts/components/BhSlider.vue';
-export default {
+import Block1 from './asserts/components/Block1.vue'
+  export default {
   components:{
     'home-header': Header,
     'top-channel': topChannel,
     'top-refresh': refreshCom,
-    'bh-slider':BHSlider
+    'bh-slider':BHSlider,
+    'block1' :Block1
   },
-  data: function () {
+  data () {
     return {
       logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
       target: 'World',
       lists: [1,2,3,4,5],
-      BhBanners:[],
+      BhBanners: [
+
+      ],
       makers: {
         title:'品牌SS制造商直供',
         items: []
@@ -53,7 +65,7 @@ export default {
         },
         goods2: []
       },
-      goodsList:[],
+      goodsList: [],
       showLoading: 'hide'
     }
   },
@@ -63,12 +75,29 @@ export default {
     }
   },
   created () {
-     this.GET("api/home/index",res =>{
-       let result = res.data.result;
-       this.BhBanners = result['banners'];
-       this.makers = result['makers'];
-       this.recommend = result['recommend'];
-     })
+    const self = this;
+    this.BhBanners = [{
+      src: "http://yanxuan.nosdn.127.net/630439320dae9f1ce3afef3c39721383.jpg",
+      title: ''
+    }];
+    modal.toast({message : "created" ,duration : 3})
+    this.GET("api/home/index",res => {
+      if (!res.ok) {
+        modal.toast({
+          message:"NetWork Error",
+          duration:3
+        })
+      }
+      let result = res.data.result;
+      self.BhBanners = result['banners'];
+      modal.toast({message : self.BhBanners.length ,duration : 1000})
+      self.makers = result['makers']
+      self.recommend = result['recommend'];
+    });
+    this.GET('api/home/pullGoods', res => {
+      let result = res.data.result;
+      this.goodsList = result['goods'];
+    })
   }
 }
 </script>
@@ -84,6 +113,7 @@ export default {
         align-items: center;
         flex-direction: column;
         justify-content: flex-start;
+        background-color: #f4f4f4;
     }
     .panel {
         width: 600px;
@@ -104,11 +134,40 @@ export default {
         color: #41B883;
     }
     .main-list{
-        position: absolute;
+        position: fixed;
+        left: 0;
+        right: 0;
+        justify-content: flex-start;
+        top: 170px;
+        bottom: 90px;
+        flex-direction: column;
+    }
+    .cell-button {
+        position: relative;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+    .cell{
+        position: relative;
         left: 0;
         right: 0;
         justify-content: space-around;
-        top: 170px;
-        bottom: 90px;
+    }
+    .item3{
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: #fff;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+    .iconfont{
+        font-family: iconfont;
+    }
+    .ig-text{
+        height: 30px;
+        font-size: 26px;
+        color: navy;
+        text-align: center;
+        flex: 1;
     }
 </style>
