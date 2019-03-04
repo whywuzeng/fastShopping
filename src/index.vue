@@ -1,124 +1,50 @@
 <template>
-  <div class="wrapper">
-    <image :src="logo" class="logo" />
-    <text class="greeting">The environment is ready!</text>
-    <HelloWorld/>
-    <div style = "justify-content: center">
-      <text class="freeStyle">Yo</text>
-    </div>
     <div class="wrapper">
-      <div class = "wrapper1" @click="update">
-        <image :src="logo" class="logo"></image>
-        <text class="title">click me to new page</text>
-      </div>
-      <div class="graph">
-        <div class="circle red"></div>
-        <div class="circle green"></div>
-        <div class="circle blue"></div>
-      </div>
+        <router-view class="r-box"></router-view>
+        <tab-bar @tabTo="onTabTo"></tab-bar>
     </div>
-  </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld'
-import util from './asserts/util.js'
-var navigator = weex.requireModule('navigator')
-var modal = weex.requireModule('modal')
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  mounted () {
-  console.log('url:', weex.config.bundleUrl)
-  },
-  data () {
-    return {
-      logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png'
-    }
-  },
-  created (){
-    util.initIconFont();
-  },
-  methods:{
-    update: function (event) {
-      navigator.push({
-        url: 'http://192.168.37.155:8081/new.html',
-        animated: 'true'
-      },event => {
-        return modal.toast({message: 'callback' + event})
-      })
+  import util from './asserts/util.js'
+  import tabBar from './asserts/components/tabBar.vue'
+
+  export default {
+    methods: {
+      onTabTo (_result) {
+        let _key = _result.data.key || ''
+        this.$router && this.$router.push('/' + _key)
+      }
+    },
+    components: {
+      'tab-bar': tabBar
+    },
+    created () {
+      util.initIconFont()
+    },
+    data () {
+      return {}
     }
   }
-}
 </script>
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+</style>
 <style scoped>
-  .wrapper {
-    justify-content: center;
-    align-items: center;
-  }
-  .logo {
-    width: 424px;
-    height: 200px;
-  }
-  .greeting {
-    text-align: center;
-    margin-top: 70px;
-    font-size: 50px;
-    color: #41B883;
-  }
-  .message {
-    margin: 30px;
-    font-size: 32px;
-    color: #727272;
-  }
-  .freeStyle{
-    color: #41B883;
-    font-size: 233px;
-    text-align: center;
-    margin-top: 100px;
-  }
-  .wrapper{
-    justify-content: center;
-    align-items: center;
-  }
-  .graph{
-    position: relative;
-    width: 700px;
-    height: 700px;
-  }
-  .circle{
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-width: 4px;
-    border-style: solid;
-    border-radius: 250px;
-  }
-  .red{
-    top: 0;
-    left: 100px;
-    background-color: rgba(255,88,88,0.5);
-    border-color: rgba(255,88,88,0.7);
-  }
-  .green{
-    left: 0;
-    bottom: 0;
-    background-color: rgba(106,230,106,0.5);
-    border-color: rgba(59,195,59,0.7);
-  }
-  .blue{
-    right: 0;
-    bottom: 0;
-    background-color: rgba(106,230,106,0.5);
-  }
-  .wrapper1{
-   align-items: center; margin-top: 120px;
-  }
-  .logo{
-    width: 360px; height: 156px;
-  }
-  .title { padding-top:40px; padding-bottom: 40px; font-size: 48px; }
+    .wrapper {
+        background-color: #f4f4f4;
+    }
+    .r-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 </style>

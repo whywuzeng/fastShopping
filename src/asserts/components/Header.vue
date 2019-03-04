@@ -1,5 +1,5 @@
 <template>
-    <div class ="wrapper">
+    <div class ="wrapper1">
         <div class="scan">
             <text class="ic_iconfont">&#xe689;</text>
             <text class="txt">扫一扫</text>
@@ -16,7 +16,7 @@
     .ic_iconfont{
         font-family: iconfont;
     }
-    .wrapper{
+    .wrapper1{
         position: fixed;
         top: 0;
         left: 0;right: 0;
