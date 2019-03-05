@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="head3-wrapper">
         <!--<div v-for="i in items">-->
             <!--<div class="bar-item" @click="tabTo(i.key)">-->
                 <!--<text class="bar-ic iconfont">{{i.icon}}</text>-->
@@ -35,7 +35,7 @@
     .iconfont {
         font-family:iconfont;
     }
-    .wrapper{
+    .head3-wrapper{
         position: fixed;
         bottom: 0;
         left: 0;right: 0;
@@ -92,7 +92,6 @@
     }
 </style>
 <script>
-    var modal = weex.requireModule('modal');
     export default {
         computed:{
         },

@@ -6,7 +6,7 @@ import ViewTopic from '@/asserts/views/Topic.vue'
 
 Vue.use(Router)
 
-export default new Router({
+module.exports = new Router({
   routes: [
     {path: '/', redirect: '/home'},
     {path: '/home', component: ViewHome},

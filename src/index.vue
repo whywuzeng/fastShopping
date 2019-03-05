@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="head3-wrapper">
         <router-view class="r-box"></router-view>
         <tab-bar @tabTo="onTabTo"></tab-bar>
     </div>
@@ -37,7 +37,7 @@
     }
 </style>
 <style scoped>
-    .wrapper {
+    .head3-wrapper {
         background-color: #f4f4f4;
     }
     .r-box {

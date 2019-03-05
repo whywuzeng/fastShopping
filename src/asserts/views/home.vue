@@ -1,11 +1,11 @@
 <template>
-<div class="wrapper">
+<div class="head3-wrapper">
     <span class="title">这是home的界面</span>
 </div>
 </template>
 
 <style scoped>
-    .wrapper{
+    .head3-wrapper{
         justify-content: center;
         align-items: center;
     }

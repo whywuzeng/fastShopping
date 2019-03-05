@@ -39,7 +39,7 @@
 </style>
 
 <script>
-    let modal = weex.requireModule('modal')
+    var modal = weex.requireModule('modal')
     export default {
         props:['ImageList'],
         data(){

@@ -40,7 +40,7 @@
   import refreshCom from './asserts/components/refresh.vue'
   import BHSlider from './asserts/components/BhSlider.vue'
   import Block1 from './asserts/components/Block1.vue'
-  import Block2 from  '@/asserts/components/Block2.vue'
+  import Block2 from '@/asserts/components/Block2.vue'
   import Block3 from '@/asserts/components/Block3.vue'
   export default {
     components: {
@@ -189,7 +189,6 @@
         src: 'http://yanxuan.nosdn.127.net/630439320dae9f1ce3afef3c39721383.jpg',
         title: ''
       }]
-      modal.toast({message: 'created', duration: 3})
       this.GET('api/home/index', res => {
         if (!res.ok) {
           modal.toast({
@@ -199,7 +198,7 @@
         }
         let result = res.data.result
         self.BhBanners = result['banners']
-        modal.toast({message: self.BhBanners.length, duration: 1000})
+        modal.toast({message: self.BhBanners.length, duration: 3})
         self.makers = result['makers']
         self.recommend = result['recommend']
       })
